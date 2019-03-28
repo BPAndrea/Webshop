@@ -65,11 +65,7 @@ input[type = submit]  {
     margin-top: 5px;
 }
 
-.book-title {
-    line-height: 1.5;
-}
-
-.author {
+.book-title, .author {
     line-height: 1.5;
 }
 
@@ -77,15 +73,10 @@ input[type = submit]  {
     height: 410px;
 }
 
-.shopping-cart {
+.buy-button {
     width: 100px;
-    height: 40px;
+    height: 30px;
     padding: 5px;
-    border-radius: 10px;
-    background-color: #86939E;
-    margin-left: 30px;
-}
-
-.breadcrumbs {
-    text-align: right;
+    background-color: #c24801;
+    margin-left: 30px
 }

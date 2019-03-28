@@ -53,7 +53,8 @@ public class BookController {
   }
 
   @RequestMapping(value = "/sort-by-price-asc")
-  public List<Book> getCheapestFirst() {
-    return bookService.sortByPrice();
+  public String getCheapestFirst(Model model) {
+    model.addAttribute("elements", bookService.sortByPrice());
+    return "index";
   }
 }

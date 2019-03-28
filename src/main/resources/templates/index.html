@@ -29,7 +29,7 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Catalog</a>
+                                <a th:href="@{/home}">Catalog</a>
                             </li>
                             <li class="divider"></li>
                             <li><a th:href="@{/home}">Log in</a></li>
@@ -46,6 +46,7 @@
         <div class="row">
             <div class="large-12 columns">
                 <ul class="breadcrumbs">
+                    <a th:href="@{/sort-by-price-asc}">Price Asc</a>
                     <li class="user-section" th:text="${name}"></li>
                     <li class="user-section" th:text="${email}"></li>
                 </ul>
@@ -60,8 +61,21 @@
                             <h4 th:text="${book.author}" class="author"></h4>
                             <h5 th:text="${book.title}" class="book-title"></h5>
                             <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
-                            <input type="button" value="Add to cart" class="shopping-cart">
+                            <input type="button" value="Add to cart" class="buy-button">
                         </div>
+                </div>
+            </div>
+        </div>
+        <div class="large-12 columns productgalleries">
+            <div class="row">
+                <div class="large-3 small-5 columns" th:each="element : ${elements}">
+                    <div class="panel">
+                        <a href=""><img th:attr="src=@{${element.pictureUrl}}" style="width: 180px; height: 200px;">
+                            <h4 th:text="${element.author}" class="author"></h4>
+                            <h5 th:text="${element.title}" class="book-title"></h5>
+                            <h6 th:text="|${element.price} Ft|" class="subheader"></h6>
+                            <input type="button" value="Add to cart" class="buy-button">
+                    </div>
                 </div>
             </div>
         </div>
