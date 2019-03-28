@@ -32,8 +32,6 @@
                                 <a href="#">Catalog</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#">Search Box</a></li>
-                            <li class="divider"></li>
                             <li><a th:href="@{/home}">Log in</a></li>
                         </ul>
                         <ul class="right">
@@ -51,8 +49,8 @@
                     <li><a th:href="@{/index}">Home</a></li>
                     <li class="unavailable"><a href="#">NEW</a></li>
                     <li class="current"><a href="#">SALE</a></li>
-                    <li class="current" th:text="${name}"></li>
-                    <li class="current" th:text="${email}"></li>
+                    <li class="user-section" th:text="${name}"></li>
+                    <li class="user-section" th:text="${email}"></li>
                 </ul>
             </div>
         </div>
