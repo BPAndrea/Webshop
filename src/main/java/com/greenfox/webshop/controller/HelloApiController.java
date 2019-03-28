@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloApiController {
 
-  @GetMapping(value = "/index")
+  @GetMapping(value = "/")
   public String index() {
     return "Hello webshop!";
   }
