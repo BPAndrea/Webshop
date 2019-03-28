@@ -16,19 +16,35 @@ public class Book {
   private String pictureUrl;
   private String category;
   private double price;
-  private int quantityOfStock;
+  private int quantityOfStock = 10;
 
   public Book() {
   }
 
-  public Book(String author, String title, String description, String pictureUrl, String category, double price, int quantityOfStock) {
+  public Book(String author, String title, String pictureUrl, double price) {
+    this.author = author;
+    this.title = title;
+    this.pictureUrl = pictureUrl;
+    this.price = price;
+  }
+
+  public Book(String author, String title, String pictureUrl, double price, int quantityOfStock) {
+    this.author = author;
+    this.title = title;
+    this.pictureUrl = pictureUrl;
+    this.price = price;
+    this.quantityOfStock = quantityOfStock;
+  }
+
+  public Book(String author, String title, String description, String pictureUrl, String category, double price) {
+    this();
     this.author = author;
     this.title = title;
     this.description = description;
     this.pictureUrl = pictureUrl;
     this.category = category;
     this.price = price;
-    this.quantityOfStock = quantityOfStock;
+
   }
 
   public long getId() {
