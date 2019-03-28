@@ -1,3 +1,4 @@
+/*
 package com.greenfox.webshop.controller;
 
 import com.greenfox.webshop.model.User;
@@ -27,14 +28,14 @@ public class AuthController {
 
   @RequestMapping("/user")
   public List<String> user(OAuth2Authentication authentication) {
-    LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-    List<String> details = new ArrayList<>();
-    String userEmail = properties.get("email").toString();
-    String name = properties.get("name").toString();
-    User userToSave = new User(name, userEmail);
-    userService.saveUser(name,userEmail);
-    details.add(userEmail);
-    details.add(name);
-    return details;
+      LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+      List<String> details = new ArrayList<>();
+      String userEmail = properties.get("email").toString();
+      String name = properties.get("name").toString();
+      User userToSave = new User(name, userEmail);
+      userService.saveUser(name,userEmail);
+      details.add(userEmail);
+      details.add(name);
+      return details;
   }
-}
+}*/
