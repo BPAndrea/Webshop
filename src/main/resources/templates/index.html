@@ -12,6 +12,11 @@
         <div class="logo">
             <h1>Bookstore</h1>
         </div>
+        <div class="search">
+            <form action="/search" method="POST">
+                <input type="search" name="keyword" placeholder="Find your favorite book">
+            </form>
+        </div>
         <div class="row">
             <div class="large-12 columns">
                 <nav class="top-bar data-topbar">
@@ -61,7 +66,7 @@
                             <h4 th:text="${book.author}" class="author"></h4>
                             <h5 th:text="${book.title}" class="book-title"></h5>
                             <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
-                            <input type="button" value="Add to cart" class="buy-button">
+                            <input type="submit" value="Add to cart" class="buy-button">
                         </div>
                 </div>
             </div>
@@ -74,7 +79,7 @@
                             <h4 th:text="${element.author}" class="author"></h4>
                             <h5 th:text="${element.title}" class="book-title"></h5>
                             <h6 th:text="|${element.price} Ft|" class="subheader"></h6>
-                            <input type="button" value="Add to cart" class="buy-button">
+                            <input type="submit" value="Add to cart" class="buy-button">
                     </div>
                 </div>
             </div>

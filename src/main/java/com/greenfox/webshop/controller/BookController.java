@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
@@ -41,10 +42,14 @@ public class BookController {
       model.addAttribute("name", name);
       model.addAttribute("email", userEmail);
       return "index";
-    } else {
-      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
-      return "index";
     }
+    return "index";
+  }
+
+  @PostMapping("/search")
+  public String search(Model model, @RequestParam(required = false) String keyword) {
+    model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
+    return "index";
   }
 
   @GetMapping(value = "/in-stock")
@@ -52,9 +57,9 @@ public class BookController {
     return bookService.getAviable();
   }
 
-  @RequestMapping(value = "/sort-by-price-asc")
+  @GetMapping(value = "/sort-by-price-asc")
   public String getCheapestFirst(Model model) {
-    model.addAttribute("elements", bookService.sortByPrice());
+    model.addAttribute("books", bookService.sortByPrice());
     return "index";
   }
 }
