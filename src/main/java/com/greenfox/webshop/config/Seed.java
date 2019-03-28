@@ -20,6 +20,7 @@ public class Seed implements CommandLineRunner {
     bookRepository.save(book1);
     bookRepository.save(book2);
     bookRepository.save(book3);
+    bookRepository.save(book4);
 
   }
 
