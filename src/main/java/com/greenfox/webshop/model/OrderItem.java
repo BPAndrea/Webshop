@@ -26,6 +26,12 @@ public class OrderItem {
     this.book = book;
   }
 
+  public OrderItem(int quantity, Book book, Order order) {
+    this.quantity = quantity;
+    this.book = book;
+    this.order = order;
+  }
+
   public long getId() {
     return id;
   }

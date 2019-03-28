@@ -66,7 +66,10 @@
                             <h5 th:text="${book.title}" class="book-title"></h5>
                             <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
                             <input type="button" value="Add to cart" class="shopping-cart">
-                        </div>
+
+                            <a class=“btn-sm btn-primary” th:href="@{|/${book.id}/orderitem|}">edit</a>
+
+                    </div>
                 </div>
             </div>
         </div>
