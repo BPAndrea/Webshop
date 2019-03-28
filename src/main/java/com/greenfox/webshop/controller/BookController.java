@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,13 +42,12 @@ public class BookController {
   @GetMapping("/home")
   public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model, OAuth2Authentication authentication) {
     LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-    List<String> details = new ArrayList<>();
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
-    User userToSave = new User(name, userEmail);
     userService.saveUser(name, userEmail);
     model.addAttribute("name", name);
     model.addAttribute("email", userEmail);
+    model.addAttribute("order", new Order());
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
       return "index";
@@ -70,13 +68,12 @@ public class BookController {
   }
 
 @GetMapping(value = "/{id}/orderitem")
-public String getOrdersByUserId(@PathVariable long id, OAuth2Authentication authentication, Model model) {
+public String createOrderItem(@PathVariable long id, OAuth2Authentication authentication, Model model) {
   LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-  List<String> details = new ArrayList<>();
   String userEmail = properties.get("email").toString();
   String name = properties.get("name").toString();
   User userWhoOrdered = userService.saveUser(name, userEmail);
-  OrderItem orderItem = new OrderItem(1051, bookRepository.findById(id));
+  OrderItem orderItem = new OrderItem(1, bookRepository.findById(id));
   Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED );
   orderItemRepository.save(orderItem);
   orderRepository.save(order);
@@ -85,5 +82,4 @@ public String getOrdersByUserId(@PathVariable long id, OAuth2Authentication auth
   model.addAttribute("email", userEmail);
   return "order";
 }
-
 }

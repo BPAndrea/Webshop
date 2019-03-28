@@ -1,4 +1,4 @@
-package com.greenfox.webshop.config;
+/*package com.greenfox.webshop.config;
 
 import com.greenfox.webshop.model.Book;
 import com.greenfox.webshop.model.Order;
@@ -27,14 +27,14 @@ public class Seed implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-/*    Book book1 = new Book("Vuk", "Fekete István", "some picture", 2.3);
+*//*    Book book1 = new Book("Vuk", "Fekete István", "some picture", 2.3);
     Book book2 = new Book("Vuk2", "Nagy István", "some picture2", 8.3);
     Book book3 = new Book("harmadik", "xy", "some picture2", 1.3);
     Book book4 = new Book("negyedik", "xy", "some picture2", 0.3, 0);
     bookRepository.save(book1);
     bookRepository.save(book2);
     bookRepository.save(book3);
-    bookRepository.save(book4);*/
+    bookRepository.save(book4);*//*
     User user1 = new User("a", "b");
     OrderItem orderItem1 = new OrderItem(2, bookRepository.findById(1));
     Order order1 = new Order(Arrays.asList(orderItem1), user1, Order.Status.PROCESSED);
@@ -43,5 +43,5 @@ public class Seed implements CommandLineRunner {
     userRepository.save(user1);
     orderRepository.save(order1);
   }
-}
+}*/
 
