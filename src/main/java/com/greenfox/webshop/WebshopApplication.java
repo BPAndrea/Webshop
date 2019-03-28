@@ -10,4 +10,3 @@ public class WebshopApplication {
     SpringApplication.run(WebshopApplication.class, args);
    }
   }
-
