@@ -26,6 +26,7 @@ public class Order {
     SHIPPED
   }
   private Status status;
+  private double price;
 
   public Order(List<OrderItem> orderItem, User user, Status status) {
     this.creation = LocalDateTime.now();
