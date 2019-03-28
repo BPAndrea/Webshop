@@ -1,5 +1,6 @@
 package com.greenfox.webshop.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
 public class User {
   @Id
   @GeneratedValue
@@ -24,6 +24,7 @@ public class User {
     this.name = name;
     this.email = email;
   }
+
 
   public long getId() {
     return id;
@@ -57,3 +58,6 @@ public class User {
     this.order = order;
   }
 }
+
+
+

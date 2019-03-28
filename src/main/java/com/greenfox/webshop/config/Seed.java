@@ -42,9 +42,6 @@ public class Seed implements CommandLineRunner {
     orderItemRepository.save(orderItem1);
     userRepository.save(user1);
     orderRepository.save(order1);
-
   }
-
-
 }
 */

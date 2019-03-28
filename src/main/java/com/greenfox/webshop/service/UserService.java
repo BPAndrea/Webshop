@@ -10,7 +10,18 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
+<<<<<<< HEAD
   public User getUserById(long id){
     return this.userRepository.findById(id);
   }
+=======
+  public void saveUser(String name, String email) {
+    User userToFind = userRepository.findByEmail(email);
+    if(userToFind==null) {
+      User userToSave = new User(name, email);
+      userRepository.save(userToSave);
+    }
+  }
+
+>>>>>>> Dev
 }
