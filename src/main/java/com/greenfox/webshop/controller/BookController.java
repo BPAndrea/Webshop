@@ -3,6 +3,7 @@ package com.greenfox.webshop.controller;
 import com.greenfox.webshop.model.Book;
 import com.greenfox.webshop.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,18 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-@RestController
+@Controller
 public class BookController {
-  @Autowired
+
   private BookService bookService;
 
+  @Autowired
+  public BookController(BookService bookService) {
+    this.bookService = bookService;
+  }
+
   @GetMapping("/index")
-  public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+  public String index(String keyword, Model model) {
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
       return "index";
     } else {
-      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword))
+      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
       return "index";
     }
   }
