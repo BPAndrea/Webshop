@@ -8,7 +8,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Book {
   @Id
-  @GeneratedValue
   private long id;
   private String author;
   private String title;
