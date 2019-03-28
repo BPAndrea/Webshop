@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 
@@ -22,8 +23,8 @@ public class BookController {
     this.bookService = bookService;
   }
 
-  @GetMapping("/")
-  public String index(String keyword, Model model) {
+  @GetMapping("/home")
+  public List<Book> index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
       return "index";
@@ -33,7 +34,7 @@ public class BookController {
     }
   }
 
-  @GetMapping(value="/in-stock")
+  @GetMapping(value = "/in-stock")
   public List<Book> getAviable() {
     return bookService.getAviable();
   }
