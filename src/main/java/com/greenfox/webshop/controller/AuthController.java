@@ -1,5 +1,9 @@
 package com.greenfox.webshop.controller;
 
+import com.greenfox.webshop.model.User;
+import com.greenfox.webshop.repository.UserRepository;
+import com.greenfox.webshop.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +15,10 @@ import java.util.List;
 
 @RestController
 public class AuthController {
+  @Autowired
+  private UserService userService;
+
+
   @RequestMapping(value = "/userfull")
   public Principal user(Principal principal) {
     return principal;
@@ -23,6 +31,8 @@ public class AuthController {
     List<String> details = new ArrayList<>();
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
+    User userToSave = new User(name, userEmail);
+    userService.saveUser(name,userEmail);
     details.add(userEmail);
     details.add(name);
     return details;
