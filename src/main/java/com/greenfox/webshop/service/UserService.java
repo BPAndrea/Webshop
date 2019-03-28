@@ -12,11 +12,14 @@ public class UserService {
   public User getUserById(long id){
     return this.userRepository.findById(id);
   }
-  public void saveUser(String name, String email) {
+
+  public User saveUser(String name, String email) {
     User userToFind = userRepository.findByEmail(email);
     if(userToFind==null) {
       User userToSave = new User(name, email);
       userRepository.save(userToSave);
+      return userToSave;
     }
+    return userToFind;
   }
 }

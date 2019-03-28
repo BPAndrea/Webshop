@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface OrderItemRepository extends CrudRepository<OrderItem, Long> {
-  public List<OrderItem> findAllByOrder(Order order);
+  List<OrderItem> findAllByOrder(Order order);
 }
 

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -47,10 +48,10 @@ public class BookController {
     String name = properties.get("name").toString();
     User userToSave = new User(name, userEmail);
     userService.saveUser(name, userEmail);
+    model.addAttribute("name", name);
+    model.addAttribute("email", userEmail);
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
-      model.addAttribute("name", name);
-      model.addAttribute("email", userEmail);
       return "index";
     } else {
       model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
@@ -68,24 +69,21 @@ public class BookController {
     return bookService.sortByPrice();
   }
 
-  @GetMapping(value = "/{id}/orderitem")
-  public String getOrdersByUserId(@PathVariable long id, OAuth2Authentication authentication) {
-    LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-    List<String> details = new ArrayList<>();
-    String userEmail = properties.get("email").toString();
-    String name = properties.get("name").toString();
-    User userToSave = new User(name, userEmail);
-    userService.saveUser(name, userEmail);
-    Book ordered = bookRepository.findById(id);
-    Order order = new Order();
-    OrderItem orderItem = new OrderItem(1, ordered, order);
-    List<OrderItem> orderItemList = new ArrayList<>();
-    orderItemList.add(orderItem);
-    order.setOrderItem(orderItemList);
-    order.setUser(userToSave);
-    orderItemRepository.save(orderItem);
-    orderRepository.save(order);
+@GetMapping(value = "/{id}/orderitem")
+public String getOrdersByUserId(@PathVariable long id, OAuth2Authentication authentication, Model model) {
+  LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+  List<String> details = new ArrayList<>();
+  String userEmail = properties.get("email").toString();
+  String name = properties.get("name").toString();
+  User userWhoOrdered = userService.saveUser(name, userEmail);
+  OrderItem orderItem = new OrderItem(1051, bookRepository.findById(id));
+  Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED );
+  orderItemRepository.save(orderItem);
+  orderRepository.save(order);
+  model.addAttribute("orderitem", orderItem);
+  model.addAttribute("name", name);
+  model.addAttribute("email", userEmail);
+  return "order";
+}
 
-    return "redirect:/";
-  }
 }
