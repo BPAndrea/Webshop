@@ -22,7 +22,7 @@ public class BookController {
     this.bookService = bookService;
   }
 
-  @GetMapping("/index")
+  @GetMapping("/")
   public String index(String keyword, Model model) {
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());

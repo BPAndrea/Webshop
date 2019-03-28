@@ -76,3 +76,12 @@ input[type = submit]  {
 .panel {
     height: 410px;
 }
+
+.shopping-cart {
+    width: 100px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #86939E;
+    margin-left: 30px;
+}
