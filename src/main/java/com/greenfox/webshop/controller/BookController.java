@@ -3,13 +3,11 @@ package com.greenfox.webshop.controller;
 import com.greenfox.webshop.model.Book;
 import com.greenfox.webshop.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 public class BookController {
@@ -21,9 +19,13 @@ public class BookController {
     return bookService.getAll();
   }
 
-  @RequestMapping(value="/in-stock")
-  public List<Book>  getAviable() {
+  @GetMapping(value="/in-stock")
+  public List<Book> getAviable() {
     return bookService.getAviable();
   }
 
+  @RequestMapping(value = "/sort-by-price-asc")
+  public List<Book> getCheapestFirst() {
+    return bookService.sortByPrice();
+  }
 }
