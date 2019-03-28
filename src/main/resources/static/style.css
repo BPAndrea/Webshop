@@ -65,7 +65,14 @@ input[type = submit]  {
     margin-top: 5px;
 }
 
-.large-3 small-5 columns {
-    width: 200px;
-    height: 300px;
+.book-title {
+    line-height: 1.5;
+}
+
+.author {
+    line-height: 1.5;
+}
+
+.panel {
+    height: 410px;
 }
