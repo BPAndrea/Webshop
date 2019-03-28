@@ -1,4 +1,4 @@
-package com.greenfox.webshop.config;
+/*package com.greenfox.webshop.config;
 
 import com.greenfox.webshop.model.Book;
 import com.greenfox.webshop.repository.BookRepository;
@@ -25,4 +25,4 @@ public class Seed implements CommandLineRunner {
   }
 
 
-}
+}*/
