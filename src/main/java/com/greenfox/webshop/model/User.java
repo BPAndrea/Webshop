@@ -1,5 +1,6 @@
 package com.greenfox.webshop.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 public class User {
   @Id
   @GeneratedValue
@@ -17,6 +18,9 @@ public class User {
   private String email;
   @OneToMany
   private List<Order> order;
+
+  public User() {
+  }
 
   public User(String name, String email) {
     this.name = name;
