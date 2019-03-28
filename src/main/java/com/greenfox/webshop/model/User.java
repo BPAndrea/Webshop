@@ -1,10 +1,10 @@
 package com.greenfox.webshop.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Order;
 import java.util.List;
 
 @Entity
@@ -16,9 +16,8 @@ public class User {
   private long id;
   private String name;
   private String email;
- // @OneToMany
-  //private List<Order> order;
-
+  @OneToMany
+  private List<Order> order;
 
   public User() {
   }
