@@ -58,11 +58,12 @@
         <div class="large-12 columns productgalleries">
             <div class="row">
                 <div class="large-3 small-5 columns" th:each="book : ${books}">
-                    <a href=""><img src="http://meselandia.tv/wp-content/uploads/2014/03/vuk-thumb-meselandia.jpg">
-                        <div class="panel">
+                    <div class="panel">
+                        <a href=""><img th:attr="src=@{${book.pictureUrl}}" style="width: 150px; height: 150px;">
                             <h5 th:text="${book.title}"></h5>
                             <h4 th:text="${book.author}"></h4>
                             <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
+                            <input type="button" value="Add to cart">
                         </div>
                 </div>
             </div>
