@@ -24,7 +24,7 @@ public class BookController {
   }
 
   @GetMapping("/home")
-  public List<Book> index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+  public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
       return "index";
