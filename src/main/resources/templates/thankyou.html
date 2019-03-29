@@ -32,6 +32,7 @@
                                 <a th:href="@{/home}">Catalog</a>
                             </li>
                             <li class="divider"></li>
+
                             <li><a th:href="@{/home}">Log in</a></li>
                         </ul>
                         <ul class="right">
@@ -46,26 +47,33 @@
         <div class="row">
             <div class="large-12 columns">
                 <ul class="breadcrumbs">
+
                     <a th:href="@{/sort-by-price-asc}">Price Asc</a>
                     <li class="user-section" th:text="${name}"></li>
                     <li class="user-section" th:text="${email}"></li>
+
                 </ul>
             </div>
         </div>
         <a th:href="@{/index}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlEQmyKq21Q30L5lTNhpkvPJSu4qo4PlgVpt-eCGSBX4bkUT_QQ" /></a>
 
-        <h1>Thank you for ordering from the Bookshop</h1>
-        <h1>of the We did it for the Cookies Team!</h1>
+        <h2>Thank you for ordering from the Bookshop</h2>
+        <h2>of the "We did it for the Cookies" team!</h2>
 
-        <h2>We will deliver your order within 5 days.</h2>
+        <h3>We will deliver your order within 5 days.</h3>
+        <h3 style="font-weight: bold">Happy reading!</h3>
     </div>
 </div>
+
 <footer class="row">
     <div class="large-12 columns">
         <hr />
         <div class="row">
             <div class="large-6 columns">
+
+
                 <p>© Copyright 2019 We did it for the cookies team</p>
+
             </div>
             <div class="large-6 columns">
                 <ul class="inline-list right">
@@ -78,4 +86,7 @@
     </div>
 </footer>
 </body>
+
 </html>
+
+

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -46,15 +45,14 @@ public class BookController {
   @GetMapping("/home")
   public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model, OAuth2Authentication authentication) {
     LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-    List<String> details = new ArrayList<>();
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
-    User userToSave = new User(name, userEmail);
     userService.saveUser(name, userEmail);
+    model.addAttribute("name", name);
+    model.addAttribute("email", userEmail);
+    model.addAttribute("order", new Order());
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
-      model.addAttribute("name", name);
-      model.addAttribute("email", userEmail);
       return "index";
     }
     return "index";
@@ -87,6 +85,23 @@ public class BookController {
     Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
     orderItemRepository.save(orderItem);
     orderRepository.save(order);
+    model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
+    model.addAttribute("name", name);
+    model.addAttribute("email", userEmail);
+    model.addAttribute("totalCost", orderItemService.totalCost(userWhoOrdered.getId()));
+    return "ordered_items";
+  }
+
+  @GetMapping(value = "/myOrder")
+  public String getOrderItem(OAuth2Authentication authentication, Model model) {
+    LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+    String userEmail = properties.get("email").toString();
+    String name = properties.get("name").toString();
+    User userWhoOrdered = userService.saveUser(name, userEmail);
+    // OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
+    // Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
+    // orderItemRepository.save(orderItem);
+    // orderRepository.save(order);
     model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
     model.addAttribute("name", name);
     model.addAttribute("email", userEmail);

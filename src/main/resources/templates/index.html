@@ -23,7 +23,7 @@
                     <ul class="title-area">
                         <li class="name">
                             <h1>
-                                <a href="/index">
+                                <a href="/home">
                                     HOME
                                 </a>
                             </h1>
@@ -41,7 +41,7 @@
                         </ul>
                         <ul class="right">
                             <li class="has-dropdown">
-                                <a href="#">Shopping Cart</a>
+                                <a href="/myOrder">Shopping Cart</a>
                             </li>
                         </ul>
                     </section>
@@ -65,9 +65,13 @@
                         <a href=""><img th:attr="src=@{${book.pictureUrl}}" style="width: 180px; height: 200px;">
                             <h4 th:text="${book.author}" class="author"></h4>
                             <h5 th:text="${book.title}" class="book-title"></h5>
-                            <h6 th:text="|${book.price} EUR|" class="subheader"></h6>
-                            <input type="submit" value="Add to cart" class="buy-button">
-                        </div>
+
+                            <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
+                            <input type="button" value="Add to cart" class="shopping-cart">
+
+                            <a class=“btn-sm btn-primary” th:href="@{|/${book.id}/orderitem|}">edit</a>
+
+
                 </div>
             </div>
         </div>
