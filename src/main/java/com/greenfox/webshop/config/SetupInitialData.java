@@ -44,18 +44,18 @@ public class SetupInitialData implements CommandLineRunner {
         new Book("Charles Dickens", "Non-fiction", "This is an awesome book.", "https://images-na.ssl-images-amazon.com/images/I/41uMgxeWY0L._SX313_BO1,204,203,200_.jpg", 18.9d, 10, "David Copperfield"),
         new Book("Charlotte Bronte", "Non-fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU5mRUk0pDW0Qi8jqD_ilOYsCjdTBAWPuSFLVwmrWXqOCzkFXf", 25.9d, 10, "Jane Eyre"),
         new Book("Fyodor Dostoyevsky", "Fiction", "This is an awesome book.", "https://s3.amazonaws.com/lowres.cartoonstock.com/caricatures-russians-russian_literature-literary_figures-authors-writers-atan667_low.jpg", 18.5d, 10, "The Brothers Karamazov"),
-        new Book("Fyodor Dostoyevsky", "Non-fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR308WPW08cOVZh4Q4pxw_L-ouZyyiOiU-HPiH_-2c70z6Cb6Uy-Q", 20.9d, 10, "Crime and Punishment"),
-        new Book("Gabriel Garcia Marquez", "Fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR308WPW08cOVZh4Q4pxw_L-ouZyyiOiU-HPiH_-2c70z6Cb6Uy-Q", 13.9d, 10, "One Hundred Years of Solitude"),
+        new Book("Fyodor Dostoyevsky", "Non-fiction", "This is an awesome book.", "https://images-na.ssl-images-amazon.com/images/I/51zZH9paouL._SX310_BO1,204,203,200_.jpg", 20.9d, 10, "Crime and Punishment"),
+        new Book("Gabriel Garcia Marquez", "Fiction", "This is an awesome book.", "https://images-na.ssl-images-amazon.com/images/I/91D-NuBThAL.jpg", 13.9d, 10, "One Hundred Years of Solitude"),
         new Book("George Orwell", "Non-fiction", "This is an awesome book.", "https://i0.wp.com/visitbath.com/wp-content/uploads/2018/09/Animal-Farm.jpg?fit=454%2C624&ssl=1", 27.5d, 10, "Animal Farm"),
-        new Book("James Joyce", "Fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx3oO1Tdpp2SE3XFjQeJph3TjHXg22dqvDFnG-9jA6q3aGNzqv", 23, 10, "Ulysses"),
-        new Book("James Joyce", "Guide", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx3oO1Tdpp2SE3XFjQeJph3TjHXg22dqvDFnG-9jA6q3aGNzqv", 13.9d, 10, "A Portrait of the Artists as a Young Man"),
-        new Book("Lev Tolstoy", "Fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx3oO1Tdpp2SE3XFjQeJph3TjHXg22dqvDFnG-9jA6q3aGNzqv", 12.5, 10, "War and Peace"),
-        new Book("Lev Tolstoy", "Non-fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx3oO1Tdpp2SE3XFjQeJph3TjHXg22dqvDFnG-9jA6q3aGNzqv", 14, 10, "Anna Karenina"),
-        new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx3oO1Tdpp2SE3XFjQeJph3TjHXg22dqvDFnG-9jA6q3aGNzqv", 14.5, 10, "To the Lighthouse"),
-        new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.hellogiggles.com%2Fuploads%2F2018%2F03%2F21041247%2Fpuppies.jpg&w=450&c=sc&poi=face&q=85", 15, 10, "Mrs. Dalloway"),
+        new Book("James Joyce", "Fiction", "This is an awesome book.", "http://gorse.ie/wp-content/uploads/2014/06/image18.jpg", 23, 10, "Ulysses"),
+        new Book("James Joyce", "Guide", "This is an awesome book.", "https://images.gr-assets.com/books/1387738909l/580717.jpg", 13.9d, 10, "A Portrait of the Artist as a Young Man"),
+        new Book("Lev Tolstoy", "Fiction", "This is an awesome book.", "https://images.gr-assets.com/books/1384803290l/18626867.jpg", 12.5, 10, "War and Peace"),
+        new Book("Lev Tolstoy", "Non-fiction", "This is an awesome book.", "https://image3.mouthshut.com/images/imagesp/925075358s.jpg", 14, 10, "Anna Karenina"),
+        new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/ToTheLighthouse.jpg/220px-ToTheLighthouse.jpg", 14.5, 10, "To the Lighthouse"),
+        new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://i.pinimg.com/originals/b2/31/45/b23145dc68680996faad8764d9fb301d.jpg", 15, 10, "Mrs. Dalloway"),
         new Book("Fekete István", "Children", "This is an awesome book.", "http://ocdn.eu/pulscms-transforms/1/xNsktkqTURBXy9kY2RiYmUzZmMxMjE0MjUxMzRjZTI0MjZmYjFkZjdjMS5qcGVnkZMFzQMUzQMU", 16, 10, "Vuk"));
   }
-
+  
   private void saveBooks() {
     books.forEach(b -> bookRepository.save(b));
   }
