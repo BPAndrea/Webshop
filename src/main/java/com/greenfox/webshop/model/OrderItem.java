@@ -17,6 +17,8 @@ public class OrderItem {
   private Book book;
   @ManyToOne
   private Order order;
+  @OneToOne
+  private User user;
 
   public OrderItem() {
   }
@@ -24,6 +26,18 @@ public class OrderItem {
   public OrderItem(int quantity, Book book) {
     this.quantity = quantity;
     this.book = book;
+  }
+
+  public OrderItem(int quantity, Book book, Order order) {
+    this.quantity = quantity;
+    this.book = book;
+    this.order = order;
+  }
+
+  public OrderItem(int quantity, Book book, User user) {
+    this.quantity = quantity;
+    this.book = book;
+    this.user = user;
   }
 
   public long getId() {
@@ -56,5 +70,13 @@ public class OrderItem {
 
   public void setOrder(Order order) {
     this.order = order;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 }
