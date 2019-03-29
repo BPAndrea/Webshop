@@ -41,7 +41,7 @@
                         </ul>
                         <ul class="right">
                             <li class="has-dropdown">
-                                <a href="#">Shopping Cart</a>
+                                <a th:href="@{/myOrder}">Shopping Cart</a>
                             </li>
                         </ul>
                     </section>
@@ -57,12 +57,11 @@
                 </ul>
             </div>
         </div>
-        <a th:href="@{/index}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlEQmyKq21Q30L5lTNhpkvPJSu4qo4PlgVpt-eCGSBX4bkUT_QQ" align="center"/></a>
-
-        <h1 text-align="center">Thank you for ordering from the Bookshop</h1>
-        <h1 text-align="center">of the We did it for the Cookies Team!</h1>
-
-        <h2>We will deliver your order within 5 days.</h2>
+        <div align="center">
+            <a th:href="@{/index}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlEQmyKq21Q30L5lTNhpkvPJSu4qo4PlgVpt-eCGSBX4bkUT_QQ"/></a>
+        </div>
+        <h1 align="center">Thank you for ordering from the Bookshop of the We did it for the Cookies Team!</h1>
+        <h2 align="center">We will deliver your order within 5 days.</h2>
     </div>
 </div>
 <footer class="row">

@@ -47,6 +47,16 @@ public class Book {
 
   }
 
+  public Book(String author, String category, String description, String pictureUrl,  double price, int quantityOfStock,  String title) {
+    this.author = author;
+    this.title = title;
+    this.description = description;
+    this.pictureUrl = pictureUrl;
+    this.category = category;
+    this.price = price;
+    this.quantityOfStock = quantityOfStock;
+  }
+
   public long getId() {
     return id;
   }
