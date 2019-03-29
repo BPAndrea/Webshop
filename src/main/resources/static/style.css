@@ -82,3 +82,9 @@ button {
 table {
     margin-left: 300px;
 }
+
+.thanks {
+    padding: 10px;
+    line-height: 1.5;
+    text-align: center;
+}

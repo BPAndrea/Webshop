@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class OrderController {
 
@@ -26,7 +24,6 @@ public class OrderController {
 
   @GetMapping(value="/totalcost")
   public double getTotalCost(@RequestParam long orderId){
-
     return this.orderService.totalCost(orderService.getOrderById(orderId));
   }
 }
