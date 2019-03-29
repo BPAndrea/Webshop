@@ -53,9 +53,11 @@ public class SetupInitialData implements CommandLineRunner {
         new Book("Lev Tolstoy", "Non-fiction", "This is an awesome book.", "https://image3.mouthshut.com/images/imagesp/925075358s.jpg", 14, 10, "Anna Karenina"),
         new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/ToTheLighthouse.jpg/220px-ToTheLighthouse.jpg", 14.5, 10, "To the Lighthouse"),
         new Book("Virginia Woolf", "Non-fiction", "This is an awesome book.", "https://i.pinimg.com/originals/b2/31/45/b23145dc68680996faad8764d9fb301d.jpg", 15, 10, "Mrs. Dalloway"),
-        new Book("Fekete István", "Children", "This is an awesome book.", "http://ocdn.eu/pulscms-transforms/1/xNsktkqTURBXy9kY2RiYmUzZmMxMjE0MjUxMzRjZTI0MjZmYjFkZjdjMS5qcGVnkZMFzQMUzQMU", 16, 10, "Vuk"));
+        new Book("Fekete István", "Children", "This is an awesome book.", "http://ocdn.eu/pulscms-transforms/1/xNsktkqTURBXy9kY2RiYmUzZmMxMjE0MjUxMzRjZTI0MjZmYjFkZjdjMS5qcGVnkZMFzQMUzQMU", 16, 10, "Vuk"),
+        new Book("Jack Kerouac", "Fiction", "This is an awesome book.", "https://images.gr-assets.com/books/1422377088l/2552.jpg", 15, 10, "On The Road"),
+        new Book("John Steinbeck", "Fiction", "This is an awesome book.", "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/JohnSteinbeck_TheGrapesOfWrath.jpg/200px-JohnSteinbeck_TheGrapesOfWrath.jpg", 22, 10, "The Grapes of Wrath"));
   }
-  
+
   private void saveBooks() {
     books.forEach(b -> bookRepository.save(b));
   }
