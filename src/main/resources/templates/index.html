@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>BookStore Webshop</title>
-    <link rel='stylesheet prefetch' href='https://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.css'>
-    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.css'>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="row">
@@ -62,16 +62,14 @@
             <div class="row">
                 <div class="large-3 small-5 columns" th:each="book : ${books}">
                     <div class="panel">
-                        <a href=""><img th:attr="src=@{${book.pictureUrl}}" style="width: 180px; height: 200px;">
-                            <h4 th:text="${book.author}" class="author"></h4>
-                            <h5 th:text="${book.title}" class="book-title"></h5>
-
-                            <h6 th:text="|${book.price} Ft|" class="subheader"></h6>
-                            <input type="button" value="Add to cart" class="shopping-cart">
-
-                            <a class=“btn-sm btn-primary” th:href="@{|/${book.id}/orderitem|}">edit</a>
-
-
+                        <img th:attr="src=@{${book.pictureUrl}}" style="width: 180px; height: 200px;">
+                        <h4 th:text="${book.author}" class="author"></h4>
+                        <h5 th:text="${book.title}" class="book-title"></h5>
+                        <h6 th:text="|${book.price} EUR|" class="subheader"></h6>
+                        <div class="btn">
+                            <a th:href="@{|/${book.id}/orderitem|}" class=".buy-button"><button>Add to cart</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
