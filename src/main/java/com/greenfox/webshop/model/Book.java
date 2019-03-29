@@ -16,7 +16,7 @@ public class Book {
   private String pictureUrl;
   private String category;
   private double price;
-  private int quantityOfStock = 10;
+  private int quantityOfStock;
 
   public Book() {
   }
