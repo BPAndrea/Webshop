@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Book {
   @Id
+  @GeneratedValue
   private long id;
   private String author;
   private String title;
@@ -44,6 +45,16 @@ public class Book {
     this.category = category;
     this.price = price;
 
+  }
+
+  public Book(String author, String category, String description, String pictureUrl,  double price, int quantityOfStock,  String title) {
+    this.author = author;
+    this.title = title;
+    this.description = description;
+    this.pictureUrl = pictureUrl;
+    this.category = category;
+    this.price = price;
+    this.quantityOfStock = quantityOfStock;
   }
 
   public long getId() {
