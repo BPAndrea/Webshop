@@ -12,11 +12,6 @@
         <div class="logo">
             <h1>Bookstore</h1>
         </div>
-        <div class="search">
-            <form action="/search" method="POST">
-                <input type="search" name="keyword" placeholder="Find your favorite book">
-            </form>
-        </div>
         <div class="row">
             <div class="large-12 columns">
                 <nav class="top-bar data-topbar">
@@ -34,8 +29,10 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a th:href="@{/home}">Catalog</a>
+                                <a href="#">Catalog</a>
                             </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Search Box</a></li>
                             <li class="divider"></li>
                             <li><a th:href="@{/home}">Log in</a></li>
                         </ul>
@@ -51,23 +48,38 @@
         <div class="row">
             <div class="large-12 columns">
                 <ul class="breadcrumbs">
-                    <a th:href="@{/sort-by-price-asc}">Price Asc</a>
-                    <li class="user-section" th:text="${name}"></li>
-                    <li class="user-section" th:text="${email}"></li>
+                    <li><a th:href="@{/index}">Home</a></li>
+                    <li class="unavailable"><a href="#">NEW</a></li>
+                    <li class="current"><a href="#">SALE</a></li>
+                    <li class="current" th:text="${name}"></li>
+                    <li class="current" th:text="${email}"></li>
                 </ul>
             </div>
         </div>
-        <h1>Add your info for the order:</h1>
-        <form action="">
-            <label>Firstname:</label><input type="text" name="firstname" width="400px">
-            <label>Lastname:</label><input type="text" name="lastname" class="details">
-            <label>Address:</label><input type="text" name="address" class="details">
-            <label>City:</label><input type="text" name="city" class="details">
-            <label>Country:</label><input type="text" name="country" class="details">
-            <label>Phone number:</label><input type="number" name="phonenumber" class="details">
-            <label>E-mail address:</label><input type="email" name="email" class="details">
-            <input type="submit" value="Order" class="buy-button">
-        </form>
+        <h1>Order details</h1>
+        <p type="text" th:text="|Your name: ${name}|"> </p>
+        <p type="text" th:text="|Your email address: ${email}|" > </p>
+        <table class="table table-striped">
+            <thead>
+            <td>Author</td>
+            <td>Name</td>
+            <td>Price (EUR)</td>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${orderitem}">
+                <td th:text="${item.getBook().getAuthor()}"></td>
+                <td th:text="${item.getBook().getTitle()}"></td>
+                <td th:text="${item.getBook().getPrice()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h2 th:text="|Total cost:   ${totalCost}|"></h2>
+        <a href="/home">Buy more books</a> <br>
+        <br>
+        <br>
+        <a href="/thankyou">Order these books</a>
+    </div>
+</div>
 <footer class="row">
     <div class="large-12 columns">
         <hr />
