@@ -25,14 +25,14 @@ public class OrderService {
     return this.orderRepository.findById(id);
   }
 
-  public double totalCost (Order order){
+  public String totalCost (long id){
     double result = 0.0d;
-    List<OrderItem> orderItemList = getOrderItemsByOrder(order);
-    for (OrderItem orderItem:
-         orderItemList) {
+    List<OrderItem> orderItemList = orderItemRepository.findAllByUser(id);
+    for (OrderItem orderItem: orderItemList) {
       result+= orderItem.getQuantity() * orderItem.getBook().getPrice();
     }
-    return result;
+    String s = String.format("%.1f", result);
+    return s;
   }
 
   public List<OrderItem> getOrderItemsByOrder(Order order){

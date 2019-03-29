@@ -18,7 +18,7 @@ public class OrderController {
   }
 
   @GetMapping(value="/totalcost")
-  public double getTotalCost(@RequestParam long orderId){
-    return this.orderService.totalCost(orderService.getOrderById(orderId));
+  public String getTotalCost(@RequestParam long orderId){
+    return this.orderService.totalCost(orderService.getOrderById(orderId).getId());
   }
 }

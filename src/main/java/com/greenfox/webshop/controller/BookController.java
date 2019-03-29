@@ -42,8 +42,9 @@ public class BookController {
     this.orderItemService = orderItemService;
   }
 
-  @GetMapping("/home")
-  public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model, OAuth2Authentication authentication) {
+  @GetMapping("/{page}/home")
+  public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model, OAuth2Authentication authentication,
+                      @PathVariable int page) {
     LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
@@ -52,12 +53,14 @@ public class BookController {
     model.addAttribute("email", userEmail);
     model.addAttribute("order", new Order());
     if (keyword == null) {
-      model.addAttribute("books", bookService.getAll());
-      return "index";
-    } else {
-      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
+      model.addAttribute("books", bookService.getNthPage(page));
+      model.addAttribute(page+"", "current");
       return "index";
     }
+      else {
+      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
+    }
+      return "index";
   }
 
   @GetMapping(value = "/in-stock")

@@ -13,12 +13,13 @@ public class OrderItemService {
   @Autowired
   private OrderItemRepository orderItemRepository;
 
-  public double totalCost (long id){
+  public String totalCost (long id){
     double result = 0.0d;
     List<OrderItem> orderItemList = orderItemRepository.findAllByUser(id);
     for (OrderItem orderItem: orderItemList) {
       result+= orderItem.getQuantity() * orderItem.getBook().getPrice();
     }
-    return result;
+    String s = String.format("%.1f", result);
+    return s;
   }
 }

@@ -3,8 +3,9 @@ package com.greenfox.webshop.service;
 import com.greenfox.webshop.model.Book;
 import com.greenfox.webshop.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,8 +15,14 @@ public class BookService {
   @Autowired
   private BookRepository bookRepository;
 
+  //Pageable pageRequest = PageRequest.of(1, 8);
+
   public List<Book> getAll(){
     return bookRepository.findAll();
+  }
+
+  public List<Book> getNthPage(int pageNumber){
+    return bookRepository.findAll(PageRequest.of(pageNumber,8)).getContent();
   }
 
   public List<Book> getAviable(){
