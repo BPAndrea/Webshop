@@ -54,10 +54,14 @@ public class BookController {
     if (keyword == null) {
       model.addAttribute("books", bookService.getAll());
       return "index";
-    } else {
-      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
-      return "index";
     }
+    return "index";
+  }
+
+  @PostMapping("/search")
+  public String search(Model model, @RequestParam(required = false) String keyword) {
+    model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
+    return "index";
   }
 
   @GetMapping(value = "/in-stock")
@@ -65,9 +69,10 @@ public class BookController {
     return bookService.getAviable();
   }
 
-  @RequestMapping(value = "/sort-by-price-asc")
-  public List<Book> getCheapestFirst() {
-    return bookService.sortByPrice();
+  @GetMapping(value = "/sort-by-price-asc")
+  public String getCheapestFirst(Model model) {
+    model.addAttribute("books", bookService.sortByPrice());
+    return "index";
   }
 
   @GetMapping(value = "/{id}/orderitem")
@@ -93,16 +98,17 @@ public class BookController {
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
     User userWhoOrdered = userService.saveUser(name, userEmail);
-   // OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
-   // Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
-   // orderItemRepository.save(orderItem);
-   // orderRepository.save(order);
+    // OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
+    // Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
+    // orderItemRepository.save(orderItem);
+    // orderRepository.save(order);
     model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
     model.addAttribute("name", name);
     model.addAttribute("email", userEmail);
     model.addAttribute("totalCost", orderItemService.totalCost(userWhoOrdered.getId()));
     return "ordered_items";
   }
+
   @GetMapping(value = "/thankyou")
   public String sayThankyou() {
     return "thankyou";

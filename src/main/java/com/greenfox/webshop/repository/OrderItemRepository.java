@@ -2,7 +2,6 @@ package com.greenfox.webshop.repository;
 
 import com.greenfox.webshop.model.Order;
 import com.greenfox.webshop.model.OrderItem;
-import com.greenfox.webshop.model.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
