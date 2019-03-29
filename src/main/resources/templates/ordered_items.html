@@ -12,6 +12,11 @@
         <div class="logo">
             <h1>Bookstore</h1>
         </div>
+        <div class="search">
+            <form action="/search" method="POST">
+                <input type="search" name="keyword" placeholder="Find your favorite book">
+            </form>
+        </div>
         <div class="row">
             <div class="large-12 columns">
                 <nav class="top-bar data-topbar">
@@ -29,16 +34,14 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Catalog</a>
+                                <a th:href="@{/home}">Catalog</a>
                             </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Search Box</a></li>
                             <li class="divider"></li>
                             <li><a th:href="@{/home}">Log in</a></li>
                         </ul>
                         <ul class="right">
                             <li class="has-dropdown">
-                                <a href="#">Shopping Cart</a>
+                                <a th:href="@{/}">Shopping Cart</a>
                             </li>
                         </ul>
                     </section>
@@ -48,11 +51,9 @@
         <div class="row">
             <div class="large-12 columns">
                 <ul class="breadcrumbs">
-                    <li><a th:href="@{/index}">Home</a></li>
-                    <li class="unavailable"><a href="#">NEW</a></li>
-                    <li class="current"><a href="#">SALE</a></li>
-                    <li class="current" th:text="${name}"></li>
-                    <li class="current" th:text="${email}"></li>
+                    <a th:href="@{/sort-by-price-asc}">Price Asc</a>
+                    <li class="user-section" th:text="${name}"></li>
+                    <li class="user-section" th:text="${email}"></li>
                 </ul>
             </div>
         </div>

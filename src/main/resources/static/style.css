@@ -26,7 +26,6 @@ a{
 }
 
 a:hover {
-    top:-20px;
     -webkit-transition-duration: .25s;
 }
 form  {
@@ -65,7 +64,7 @@ input[type = text]  {
     height: 410px;
 }
 
-.buy-button {
+button {
     width: 100px;
     height: 30px;
     padding: 5px;
@@ -81,3 +80,6 @@ input[type = text]  {
     width: 400px;
 }
 
+table {
+    margin-left: 300px;
+}
