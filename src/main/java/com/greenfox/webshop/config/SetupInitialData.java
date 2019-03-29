@@ -61,14 +61,4 @@ public class SetupInitialData implements CommandLineRunner {
   private void saveBooks() {
     books.forEach(b -> bookRepository.save(b));
   }
-
-  /*User user1 = new User("a", "b");
-  OrderItem orderItem1 = new OrderItem(2, bookRepository.findById(1));
-  Order order1 = new Order(Arrays.asList(orderItem1), user1, Order.Status.PROCESSED);
-  //bookRepository.save(book1);
-    orderItemRepository.save(orderItem1);
-    userRepository.save(user1);
-    orderRepository.save(order1);*/
 }
-
-

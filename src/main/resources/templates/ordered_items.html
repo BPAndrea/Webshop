@@ -12,6 +12,11 @@
         <div class="logo">
             <h1>Bookstore</h1>
         </div>
+        <div class="search">
+            <form action="/search" method="POST">
+                <input type="search" name="keyword" placeholder="Find your favorite book">
+            </form>
+        </div>
         <div class="row">
             <div class="large-12 columns">
                 <nav class="top-bar data-topbar">
@@ -53,14 +58,13 @@
                 </ul>
             </div>
         </div>
-        <a th:href="@{/index}"><img src="http://www.wordybynature.org/wp-content/uploads/2012/10/Leadership-Basket.jpg" /></a>
-
+        <div align="center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT6zBfrH6cAz7rZ4iYMF5bF3OPLrcdXfr0tBvyUQgYXIo-5ovU" />
+        </div>
         <h1>Order details</h1>
-
-        <p type="text" th:text="|Your name: ${name}|"></p>
-        <p type="text" th:text="|Your email address: ${email}|"></p>
-
-        <table class="table table-striped">
+        <p type="text" th:text="|Your name: ${name}|" class="ordering"> </p>
+        <p type="text" th:text="|Your email address: ${email}|" class="ordering"> </p>
+        <table class="table table-striped" align="center">
             <thead>
             <td>Author</td>
             <td>Name</td>
@@ -74,22 +78,16 @@
             </tr>
             </tbody>
         </table>
-        <h2 th:text="|Total cost:   ${totalCost}|"></h2>
-        <a href="/home">Buy more books</a> <br>
-        <br>
-        <br>
-        <a href="/thankyou">Order these books</a>
+        <h2 th:text="|Total cost:   ${totalCost}|" align="center">EUR</h2>
+        <p align="center"><a href="/home">Buy more books</a> | <a href="/thankyou">Order these books</a></p>
     </div>
 </div>
-
 <footer class="row">
     <div class="large-12 columns">
         <hr/>
         <div class="row">
             <div class="large-6 columns">
-
                 <p>© Copyright 2019 We did it for the cookies team</p>
-
             </div>
             <div class="large-6 columns">
                 <ul class="inline-list right">

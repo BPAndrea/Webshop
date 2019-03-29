@@ -70,7 +70,12 @@ public class BookController {
   }
 
   @GetMapping(value = "/sort-by-price-asc")
-  public String getCheapestFirst(Model model) {
+  public String getCheapestFirst(Model model, OAuth2Authentication authentication) {
+      LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+      String userEmail = properties.get("email").toString();
+      String name = properties.get("name").toString();
+      model.addAttribute("name", name);
+      model.addAttribute("email", userEmail);
     model.addAttribute("books", bookService.sortByPrice());
     return "index";
   }
