@@ -98,10 +98,6 @@ public class BookController {
     String userEmail = properties.get("email").toString();
     String name = properties.get("name").toString();
     User userWhoOrdered = userService.saveUser(name, userEmail);
-    // OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
-    // Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
-    // orderItemRepository.save(orderItem);
-    // orderRepository.save(order);
     model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
     model.addAttribute("name", name);
     model.addAttribute("email", userEmail);

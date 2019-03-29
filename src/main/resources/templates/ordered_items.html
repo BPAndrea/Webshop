@@ -18,7 +18,7 @@
                     <ul class="title-area">
                         <li class="name">
                             <h1>
-                                <a href="/index">
+                                <a href="/home">
                                     HOME
                                 </a>
                             </h1>
@@ -29,40 +29,38 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Catalog</a>
+                                <a th:href="@{/home}">Catalog</a>
                             </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Search Box</a></li>
                             <li class="divider"></li>
                             <li><a th:href="@{/home}">Log in</a></li>
                         </ul>
                         <ul class="right">
                             <li class="has-dropdown">
-                                <a href="#">Shopping Cart</a>
+                                <a href="/myOrder">Shopping Cart</a>
                             </li>
                         </ul>
                     </section>
                 </nav>
             </div>
         </div>
+
         <div class="row">
             <div class="large-12 columns">
                 <ul class="breadcrumbs">
-                    <li><a th:href="@{/index}">Home</a></li>
-                    <li class="unavailable"><a href="#">NEW</a></li>
-                    <li class="current"><a href="#">SALE</a></li>
-                    <li class="current" th:text="${name}"></li>
-                    <li class="current" th:text="${email}"></li>
+                    <a th:href="@{/sort-by-price-asc}">Price Asc</a>
+                    <li class="user-section" th:text="${name}"></li>
+                    <li class="user-section" th:text="${email}"></li>
                 </ul>
             </div>
         </div>
 
-        <a th:href="@{/index}"><img src="https://s26162.pcdn.co/wp-content/uploads/2017/11/bookstore-slide-2MCD-superJumbo.jpg" /></a>
+        <a th:href="@{/index}"><img
+                src="https://s26162.pcdn.co/wp-content/uploads/2017/11/bookstore-slide-2MCD-superJumbo.jpg"/></a>
 
         <h1>Order details</h1>
 
-        <p type="text" th:text="|Your name: ${name}|"> </p>
-        <p type="text" th:text="|Your email address: ${email}|" > </p>
+        <p type="text" th:text="|Your name: ${name}|"></p>
+        <p type="text" th:text="|Your email address: ${email}|"></p>
 
         <table class="table table-striped">
             <thead>
@@ -88,7 +86,7 @@
 
 <footer class="row">
     <div class="large-12 columns">
-        <hr />
+        <hr/>
         <div class="row">
             <div class="large-6 columns">
 
