@@ -1,17 +1,23 @@
 package com.greenfox.webshop.controller;
 
 import com.greenfox.webshop.model.Book;
+import com.greenfox.webshop.model.Order;
+import com.greenfox.webshop.model.OrderItem;
 import com.greenfox.webshop.model.User;
+import com.greenfox.webshop.repository.BookRepository;
+import com.greenfox.webshop.repository.OrderItemRepository;
+import com.greenfox.webshop.repository.OrderRepository;
 import com.greenfox.webshop.service.BookService;
+import com.greenfox.webshop.service.OrderItemService;
 import com.greenfox.webshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -20,12 +26,21 @@ import java.util.List;
 public class BookController {
 
   private BookService bookService;
+  private BookRepository bookRepository;
   private UserService userService;
+  private OrderItemRepository orderItemRepository;
+  private OrderItemService orderItemService;
+  private OrderRepository orderRepository;
 
   @Autowired
-  public BookController(BookService bookService, UserService userService) {
+  public BookController(BookService bookService, UserService userService, BookRepository bookRepository,
+                        OrderItemRepository orderItemRepository, OrderRepository orderRepository, OrderItemService orderItemService) {
     this.bookService = bookService;
     this.userService = userService;
+    this.bookRepository = bookRepository;
+    this.orderItemRepository = orderItemRepository;
+    this.orderRepository = orderRepository;
+    this.orderItemService = orderItemService;
   }
 
   @GetMapping("/home")
@@ -41,10 +56,14 @@ public class BookController {
       model.addAttribute("name", name);
       model.addAttribute("email", userEmail);
       return "index";
-    } else {
-      model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
-      return "index";
     }
+    return "index";
+  }
+
+  @PostMapping("/search")
+  public String search(Model model, @RequestParam(required = false) String keyword) {
+    model.addAttribute("books", bookService.findByTitleDescriptionorAuthor(keyword));
+    return "index";
   }
 
   @GetMapping(value = "/in-stock")
@@ -52,8 +71,31 @@ public class BookController {
     return bookService.getAviable();
   }
 
-  @RequestMapping(value = "/sort-by-price-asc")
-  public List<Book> getCheapestFirst() {
-    return bookService.sortByPrice();
+  @GetMapping(value = "/sort-by-price-asc")
+  public String getCheapestFirst(Model model) {
+    model.addAttribute("books", bookService.sortByPrice());
+    return "index";
+  }
+
+  @GetMapping(value = "/{id}/orderitem")
+  public String createOrderItem(@PathVariable long id, OAuth2Authentication authentication, Model model) {
+    LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+    String userEmail = properties.get("email").toString();
+    String name = properties.get("name").toString();
+    User userWhoOrdered = userService.saveUser(name, userEmail);
+    OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
+    Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
+    orderItemRepository.save(orderItem);
+    orderRepository.save(order);
+    model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
+    model.addAttribute("name", name);
+    model.addAttribute("email", userEmail);
+    model.addAttribute("totalCost", orderItemService.totalCost(userWhoOrdered.getId()));
+    return "ordered_items";
+  }
+
+  @GetMapping(value = "/thankyou")
+  public String sayThankyou() {
+    return "thankyou";
   }
 }

@@ -57,22 +57,17 @@
                 </ul>
             </div>
         </div>
-        <img src="https://s26162.pcdn.co/wp-content/uploads/2017/11/bookstore-slide-2MCD-superJumbo.jpg" />
-        <div class="large-12 columns productgalleries">
-            <div class="row">
-                <div class="large-3 small-5 columns" th:each="book : ${books}">
-                    <div class="panel">
-                        <a href=""><img th:attr="src=@{${book.pictureUrl}}" style="width: 180px; height: 200px;">
-                            <h4 th:text="${book.author}" class="author"></h4>
-                            <h5 th:text="${book.title}" class="book-title"></h5>
-                            <h6 th:text="|${book.price} EUR|" class="subheader"></h6>
-                            <input type="submit" value="Add to cart" class="buy-button">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <h1>Add your info for the order:</h1>
+        <form action="">
+            <label>Firstname:</label><input type="text" name="firstname" width="400px">
+            <label>Lastname:</label><input type="text" name="lastname" class="details">
+            <label>Address:</label><input type="text" name="address" class="details">
+            <label>City:</label><input type="text" name="city" class="details">
+            <label>Country:</label><input type="text" name="country" class="details">
+            <label>Phone number:</label><input type="number" name="phonenumber" class="details">
+            <label>E-mail address:</label><input type="email" name="email" class="details">
+            <input type="submit" value="Order" class="buy-button">
+        </form>
 <footer class="row">
     <div class="large-12 columns">
         <hr />
