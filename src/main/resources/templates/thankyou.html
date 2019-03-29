@@ -18,7 +18,7 @@
                     <ul class="title-area">
                         <li class="name">
                             <h1>
-                                <a href="/index">
+                                <a href="/home">
                                     HOME
                                 </a>
                             </h1>
@@ -56,33 +56,12 @@
                 </ul>
             </div>
         </div>
-        <a th:href="@{/index}"><img src="https://s26162.pcdn.co/wp-content/uploads/2017/11/bookstore-slide-2MCD-superJumbo.jpg" /></a>
+        <a th:href="@{/index}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlEQmyKq21Q30L5lTNhpkvPJSu4qo4PlgVpt-eCGSBX4bkUT_QQ" /></a>
 
-        <h1>Order details</h1>
+        <h1>Thank you for ordering from the Bookshop</h1>
+        <h1>of the We did it for the Cookies Team!</h1>
 
-        <p type="text" th:text="|Your name: ${name}|"> </p>
-        <p type="text" th:text="|Your email address: ${email}|" > </p>
-
-
-        <table class="table table-striped">
-            <thead>
-            <td>Author</td>
-            <td>Name</td>
-            <td>Price (EUR)</td>
-            </thead>
-            <tbody>
-            <tr th:each="item: ${orderitem}">
-                <td th:text="${item.getBook().getAuthor()}"></td>
-                <td th:text="${item.getBook().getTitle()}"></td>
-                <td th:text="${item.getBook().getPrice()}"></td>
-            </tr>
-            </tbody>
-        </table>
-        <h2 th:text="|Total cost:   ${totalCost}|"></h2>
-        <a href="/home">Buy more books</a> <br>
-        <br>
-        <br>
-        <a href="/thankyou">Order these books</a>
+        <h2>We will deliver your order within 5 days.</h2>
     </div>
 </div>
 <div class="row">

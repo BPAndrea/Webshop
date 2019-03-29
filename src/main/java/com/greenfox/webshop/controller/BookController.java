@@ -8,6 +8,7 @@ import com.greenfox.webshop.repository.BookRepository;
 import com.greenfox.webshop.repository.OrderItemRepository;
 import com.greenfox.webshop.repository.OrderRepository;
 import com.greenfox.webshop.service.BookService;
+import com.greenfox.webshop.service.OrderItemService;
 import com.greenfox.webshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -27,16 +28,18 @@ public class BookController {
   private BookRepository bookRepository;
   private UserService userService;
   private OrderItemRepository orderItemRepository;
+  private OrderItemService orderItemService;
   private OrderRepository orderRepository;
 
   @Autowired
   public BookController(BookService bookService, UserService userService, BookRepository bookRepository,
-                        OrderItemRepository orderItemRepository, OrderRepository orderRepository) {
+                        OrderItemRepository orderItemRepository, OrderRepository orderRepository, OrderItemService orderItemService) {
     this.bookService = bookService;
     this.userService = userService;
     this.bookRepository = bookRepository;
     this.orderItemRepository = orderItemRepository;
     this.orderRepository = orderRepository;
+    this.orderItemService = orderItemService;
   }
 
   @GetMapping("/home")
@@ -67,19 +70,25 @@ public class BookController {
     return bookService.sortByPrice();
   }
 
-@GetMapping(value = "/{id}/orderitem")
-public String createOrderItem(@PathVariable long id, OAuth2Authentication authentication, Model model) {
-  LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
-  String userEmail = properties.get("email").toString();
-  String name = properties.get("name").toString();
-  User userWhoOrdered = userService.saveUser(name, userEmail);
-  OrderItem orderItem = new OrderItem(1, bookRepository.findById(id));
-  Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED );
-  orderItemRepository.save(orderItem);
-  orderRepository.save(order);
-  model.addAttribute("orderitem", orderItem);
-  model.addAttribute("name", name);
-  model.addAttribute("email", userEmail);
-  return "order";
-}
+  @GetMapping(value = "/{id}/orderitem")
+  public String createOrderItem(@PathVariable long id, OAuth2Authentication authentication, Model model) {
+    LinkedHashMap<String, Object> properties = (LinkedHashMap<String, Object>) authentication.getUserAuthentication().getDetails();
+    String userEmail = properties.get("email").toString();
+    String name = properties.get("name").toString();
+    User userWhoOrdered = userService.saveUser(name, userEmail);
+    OrderItem orderItem = new OrderItem(1, bookRepository.findById(id), userWhoOrdered);
+    Order order = new Order(Arrays.asList(orderItem), userWhoOrdered, Order.Status.PROCESSED);
+    orderItemRepository.save(orderItem);
+    orderRepository.save(order);
+    model.addAttribute("orderitem", orderItemRepository.findAllByUser(userWhoOrdered.getId()));
+    model.addAttribute("name", name);
+    model.addAttribute("email", userEmail);
+    model.addAttribute("totalCost", orderItemService.totalCost(userWhoOrdered.getId()));
+    return "ordered_items";
+  }
+
+  @GetMapping(value = "/thankyou")
+  public String sayThankyou() {
+    return "thankyou";
+  }
 }
